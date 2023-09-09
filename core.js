@@ -28,6 +28,7 @@ let remover;        //se for 'sim', confirma a remoção do cadastro do livro; s
 const livro1 = {
     titulo: "A Economia da Natureza",
     autor: "Robert E. Ricklefs",
+    outrosAutores: "ex:Jane Austen",
     edicao: "7",
     publicacao: "Rio de Janeiro: Guanabara Koogan, 2016",
     paginas: "606",
@@ -38,6 +39,7 @@ const livro1 = {
 const livro2 = {
     titulo: "A História da Gastronomia",
     autor: "Maria Leonor de Macedo Soares Leal",
+    outrosAutores: "ex:Jane Austen",
     edicao: "1",
     publicacao: "Rio de Janeiro: Senac, 2005",
     paginas: "137",
@@ -46,7 +48,9 @@ const livro2 = {
 };
 
 //array contendo os objetos cadastrados
+acervo = [livro1, livro2];
 acervo = [livro1 , livro2];
+
 
 let loop = true;
 
@@ -66,6 +70,7 @@ while (loop) {
         case 1:
             console.clear();
             console.log("__________LISTA DE LIVROS CADASTRADOS__________\n")
+            for (const livro of acervo) {
             for (const livro of acervo){
                 console.log(`${livro.titulo}`.toUpperCase());
                 console.log("------------------------------------------------------------------");
@@ -76,6 +81,33 @@ while (loop) {
                 console.log(`ISBN:       ${livro.isbn}`);
                 console.log(`assuntos: ${livro.assuntos}\n\n`);
             }
+            readline.keyInPause();
+            break;
+        case 2:
+            console.log("__________CADASTRO DE NOVOS LIVROS__________\n")
+            let tituloLivro = readline.question("Digite o titulo do livro: ");
+            let autorLivro = readline.question("Digite o autor do livro: ");
+            let outrosAutoresLivro = [];
+            outrosAutoresLivro = readline.question("Digite o nome dos outros autores (ex: autor1,autor2):").split(',');
+            let edicaoLivro = readline.question("Digite a edição do livro: ");
+            let paginasLivro = readline.question("Digite a quantidade de paginas do livro: ");
+            let publicacaoLivro = readline.question("Digite o local de publicação do livro: ");
+            let isbnLivro = readline.question("Digite o ISBN do livro: ");
+
+            let assuntosLivro;
+            while (true) {
+                assuntosLivro = readline.question("Digite os assuntos do livro separados por vírgula (ex: assunto1,assunto2): ");
+                if (assuntosLivro.length !== 0) {
+                    assuntosLivro = assuntosLivro.split(',')
+                    break;
+                } else {
+                    console.log("Pelo menos um assunto deve ser fornecido.");
+                }
+            }
+            const livro = {
+                titulo: tituloLivro,
+                autor: autorLivro,
+                outrosAutores: outrosAutoresLivro,
             readline.keyInPause();        
             break;
         case 2:
@@ -175,6 +207,10 @@ while (loop) {
                                 console.log('_________________________________________________________________');
                                 console.log('');
                                 readline.keyInPause();
+
+
+                                acervo[posicao] = livro_alterado;
+
                             
                                 acervo[posicao] = livro_alterado;
                             
@@ -189,6 +225,7 @@ while (loop) {
                                         console.log('\nResposta inválida!');
                                     }
                                 } while (continuar != 'sim' && continuar != 'nao');
+                                break;
                                             break;
                             case 2:
                                 autor = readline.question('\nAutor(a) Principal: ');
@@ -216,6 +253,10 @@ while (loop) {
                                 console.log('_________________________________________________________________');
                                 console.log('');
                                 readline.keyInPause();
+
+
+                                acervo[posicao] = livro_alterado;
+
                             
                                 acervo[posicao] = livro_alterado;
                             
@@ -257,9 +298,12 @@ while (loop) {
                                 console.log('_________________________________________________________________');
                                 console.log('');
                                 readline.keyInPause();
+
+                                acervo[posicao] = livro_alterado;
                             
                                 acervo[posicao] = livro_alterado;
                             
+
                                 do {
                                     continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
                                     continuar = continuar.toLowerCase();
@@ -298,6 +342,9 @@ while (loop) {
                                 console.log('_________________________________________________________________');
                                 console.log('');
                                 readline.keyInPause();
+
+                                acervo[posicao] = livro_alterado;
+
                             
                                 acervo[posicao] = livro_alterado;
                             
@@ -339,6 +386,9 @@ while (loop) {
                                 console.log('_________________________________________________________________');
                                 console.log('');
                                 readline.keyInPause();
+
+                                acervo[posicao] = livro_alterado;
+
                             
                                 acervo[posicao] = livro_alterado;
                             
@@ -380,6 +430,9 @@ while (loop) {
                                 console.log('_________________________________________________________________');
                                 console.log('');
                                 readline.keyInPause();
+
+                                acervo[posicao] = livro_alterado;
+
                             
                                 acervo[posicao] = livro_alterado;
                             
@@ -402,7 +455,7 @@ while (loop) {
                                 for (let n = 0; n < assuntos.length; n++) {
                                     livro_alterado.assuntos[n] = readline.question(`Assunto ${n + 1}: `);
                                 }
-                            
+
                                 console.log('\n________________________________\n');
                                 console.log('Alteração realizada com sucesso!');
                                 console.log('-----------------------------------------------------------------\n');
@@ -426,6 +479,9 @@ while (loop) {
                                 console.log('_________________________________________________________________');
                                 console.log('');
                                 readline.keyInPause();
+
+                                acervo[posicao] = livro_alterado;
+
                             
                                 acervo[posicao] = livro_alterado;
                             
@@ -450,6 +506,8 @@ while (loop) {
                                 break;
                         }
                     } while (alterar);
+                    nao_encontrou = false;
+                    break;
                         nao_encontrou = false;
                         break;
                 }
