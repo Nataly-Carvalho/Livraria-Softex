@@ -49,6 +49,8 @@ const livro2 = {
 
 //array contendo os objetos cadastrados
 acervo = [livro1, livro2];
+acervo = [livro1 , livro2];
+
 
 let loop = true;
 
@@ -69,6 +71,7 @@ while (loop) {
             console.clear();
             console.log("__________LISTA DE LIVROS CADASTRADOS__________\n")
             for (const livro of acervo) {
+            for (const livro of acervo){
                 console.log(`${livro.titulo}`.toUpperCase());
                 console.log("------------------------------------------------------------------");
                 console.log(`Autor:      ${livro.autor}`);
@@ -105,6 +108,22 @@ while (loop) {
                 titulo: tituloLivro,
                 autor: autorLivro,
                 outrosAutores: outrosAutoresLivro,
+            readline.keyInPause();        
+            break;
+        case 2:
+            let tituloLivro = readline.question("Digite o titulo do livro: ");
+            let autorLivro = readline.question("Digite o autor do livro: ");
+            let edicaoLivro = readline.questionInt("Digite a edição do livro: ");
+            let paginasLivro = readline.questionInt("Digite a quantidade de paginas do livro: ");
+            let publicacaoLivro = readline.question("Digite o local de publicação do livro: ");
+            let isbnLivro = readline.questionInt("Digite o ISBN do livro: ");
+            let assuntosLivro =[];
+            for(let i=0; i<4; i++){
+                assuntosLivro[i] = readline.question(`Digite o assunto do livro ${i+1}: `);
+            }
+            const livro ={
+                titulo: tituloLivro,
+                autor:  autorLivro,
                 edicao: edicaoLivro,
                 publicacao: publicacaoLivro,
                 paginas: paginasLivro,
@@ -189,8 +208,12 @@ while (loop) {
                                 console.log('');
                                 readline.keyInPause();
 
+
                                 acervo[posicao] = livro_alterado;
 
+                            
+                                acervo[posicao] = livro_alterado;
+                            
                                 do {
                                     continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
                                     continuar = continuar.toLowerCase();
@@ -203,6 +226,7 @@ while (loop) {
                                     }
                                 } while (continuar != 'sim' && continuar != 'nao');
                                 break;
+                                            break;
                             case 2:
                                 autor = readline.question('\nAutor(a) Principal: ');
                                 livro_alterado.autor = autor;
@@ -230,8 +254,12 @@ while (loop) {
                                 console.log('');
                                 readline.keyInPause();
 
+
                                 acervo[posicao] = livro_alterado;
 
+                            
+                                acervo[posicao] = livro_alterado;
+                            
                                 do {
                                     continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
                                     continuar = continuar.toLowerCase();
@@ -272,6 +300,9 @@ while (loop) {
                                 readline.keyInPause();
 
                                 acervo[posicao] = livro_alterado;
+                            
+                                acervo[posicao] = livro_alterado;
+                            
 
                                 do {
                                     continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
@@ -314,6 +345,9 @@ while (loop) {
 
                                 acervo[posicao] = livro_alterado;
 
+                            
+                                acervo[posicao] = livro_alterado;
+                            
                                 do {
                                     continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
                                     continuar = continuar.toLowerCase();
@@ -355,6 +389,9 @@ while (loop) {
 
                                 acervo[posicao] = livro_alterado;
 
+                            
+                                acervo[posicao] = livro_alterado;
+                            
                                 do {
                                     continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
                                     continuar = continuar.toLowerCase();
@@ -396,6 +433,9 @@ while (loop) {
 
                                 acervo[posicao] = livro_alterado;
 
+                            
+                                acervo[posicao] = livro_alterado;
+                            
                                 do {
                                     continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
                                     continuar = continuar.toLowerCase();
@@ -442,6 +482,9 @@ while (loop) {
 
                                 acervo[posicao] = livro_alterado;
 
+                            
+                                acervo[posicao] = livro_alterado;
+                            
                                 do {
                                     continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
                                     continuar = continuar.toLowerCase();
@@ -465,6 +508,8 @@ while (loop) {
                     } while (alterar);
                     nao_encontrou = false;
                     break;
+                        nao_encontrou = false;
+                        break;
                 }
             }
             if (nao_encontrou) {
