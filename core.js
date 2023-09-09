@@ -70,7 +70,7 @@ while (loop) {
         case 1:
             console.clear();
             console.log("__________LISTA DE LIVROS CADASTRADOS__________\n")
-            for (const livro of acervo) {
+
             for (const livro of acervo){
                 console.log(`${livro.titulo}`.toUpperCase());
                 console.log("------------------------------------------------------------------");
@@ -108,22 +108,6 @@ while (loop) {
                 titulo: tituloLivro,
                 autor: autorLivro,
                 outrosAutores: outrosAutoresLivro,
-            readline.keyInPause();        
-            break;
-        case 2:
-            let tituloLivro = readline.question("Digite o titulo do livro: ");
-            let autorLivro = readline.question("Digite o autor do livro: ");
-            let edicaoLivro = readline.questionInt("Digite a edição do livro: ");
-            let paginasLivro = readline.questionInt("Digite a quantidade de paginas do livro: ");
-            let publicacaoLivro = readline.question("Digite o local de publicação do livro: ");
-            let isbnLivro = readline.questionInt("Digite o ISBN do livro: ");
-            let assuntosLivro =[];
-            for(let i=0; i<4; i++){
-                assuntosLivro[i] = readline.question(`Digite o assunto do livro ${i+1}: `);
-            }
-            const livro ={
-                titulo: tituloLivro,
-                autor:  autorLivro,
                 edicao: edicaoLivro,
                 publicacao: publicacaoLivro,
                 paginas: paginasLivro,
