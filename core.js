@@ -93,9 +93,10 @@ while (loop) {
 
             let assuntosLivro;
             while (true) {
-                assuntosLivro = readline.question("Digite os assuntos do livro separados por vírgula (ex: assunto1,assunto2): ").split(',');
-                if (assuntosLivro.length==!0) {
-                    break; 
+                assuntosLivro = readline.question("Digite os assuntos do livro separados por vírgula (ex: assunto1,assunto2): ");
+                if (assuntosLivro.length !== 0) {
+                    assuntosLivro = assuntosLivro.split(',')
+                    break;
                 } else {
                     console.log("Pelo menos um assunto deve ser fornecido.");
                 }
