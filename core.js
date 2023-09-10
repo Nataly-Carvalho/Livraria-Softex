@@ -148,7 +148,7 @@ O que deseja alterar?
 ---------------------
 1. Título
 2. Autor Principal
- 3. Edição
+3. Edição
 4. Publicação
 5. Páginas 
 6. ISBN
@@ -411,7 +411,6 @@ ____________________
             break;
 
         case 5:
-            console.clear();
             console.log("__________REMOVENDO CADASTRO DE LIVRO__________\n");
             isbnBusca = readline.question('Digite o ISBN do livro: ');
             for (const livro of acervo) {
