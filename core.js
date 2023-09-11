@@ -1,27 +1,44 @@
+// DEPENDENCIAS
+
 const readline = require("readline-sync");
 const clear = require("clear");
 
-/*
-VARIÁVEIS GLOBAIS
-*/
-let acervo;         //array contendo os objetos cadastrados
-let livro_alterado; //auxiliará na alteração de cadastros, contendo os valores objeto a ser alterado
-let tituloLivro;         //variável que armazenará o título do livro a ser cadastrado/alterado
-let autorLivro;          //variável que armazenará o autor principal do livro a ser cadastrado/alterado
-let outrosAutoresLivros; //variável que armazenará outros autores do livro a ser cadastrado/alterado
-let edicaoLivro;         //variável que armazenará o n° da edição do livro a ser cadastrado/alterado
-let publicacaoLivro;     //variável que armazenará a publicação do livro a ser cadastrado/alterado
-let paginasLivro;        //variável que armazenará o n° de páginas do livro a ser cadastrado/alterado
-let isbnLivro;           //variável que armazenará o ISBN do livro a ser cadastrado/alterado
-let assuntosLivro;       //array que armazenará os assuntos do livro a ser cadastrado/alterado
-let isbnBusca;      //armazenará o ISBN a ser buscado no acervo
-let posicao;        //índice do objeto encontrado dentro da lista acervo
-let op;             //operador das opções de alteração do cadastro do livro (título, autor principal, ISBN, etc)
-let alterar;        //booleano que indicará ao laço de repetição das opções de alteração (do/while) uma nova repetição (ou não)
-let continuar;      //se 'sim', o usuário continuará alterando o mesmo livro, se 'nao', irá voltar ao menu principal
+//VARIÁVEIS GLOBAIS
+
+let acervo;                //array contendo os objetos cadastrados
+let livro_alterado;        //auxiliará na alteração de cadastros, contendo os valores objeto a ser alterado
+let tituloLivro;           //variável que armazenará o título do livro a ser cadastrado/alterado
+let autorLivro;            //variável que armazenará o autor principal do livro a ser cadastrado/alterado
+let outrosAutoresLivro;         //variável que armazenará outros autores do livro a ser cadastrado/alterado
+let edicaoLivro;           //variável que armazenará o n° da edição do livro a ser cadastrado/alterado
+let publicacaoLivro;       //variável que armazenará a publicação do livro a ser cadastrado/alterado
+let paginasLivro;          //variável que armazenará o n° de páginas do livro a ser cadastrado/alterado
+let isbnLivro;             //variável que armazenará o ISBN do livro a ser cadastrado/alterado
+let assuntosLivro;         //array que armazenará os assuntos do livro a ser cadastrado/alterado
+let isbnBusca;             //armazenará o ISBN a ser buscado no acervo
+let posicao;               //índice do objeto encontrado dentro da lista acervo
+let op;                    //operador das opções de alteração do cadastro do livro (título, autor principal, ISBN, etc)
+let alterar;               //booleano que indicará ao laço de repetição das opções de alteração (do/while) uma nova repetição (ou não)
+let continuar;             //se 'sim', o usuário continuará alterando o mesmo livro, se 'nao', irá voltar ao menu principal
 let nao_encontrou = true;  //se for 'true', não aparecerá a mensagem de 'livro não encontrado'; se for 'false', aparecerá.
-let remover;        //se for 'sim', confirma a remoção do cadastro do livro; se for 'nao', voltará ao menu principal
+let remover;               //se for 'sim', confirma a remoção do cadastro do livro; se for 'nao', voltará ao menu principal
 let loop = true;
+
+// FUNCOES AUXILIARES
+
+/* Automatiza a formatacao de perguntas ao usuario.
+opcao    - recebe uma array com os valores corretos para o usuario digitar (As opcoes do menu)
+msg      - recebe a mensagem a ser apresentada ao usuario. Valor padrao: "Escolha uma opção: "
+msg_erro - recebe a mensagem que sera apresentada caso o usuario nao insira uma das opcoes definidas no parametro opcoes. Valor padrao:"Opção inválida!"
+*/
+function pergunta(opcao, msg="Escolha uma opção: ", msg_erro="Opção inválida!"){
+    return readline.question(msg, {limit: opcao, limitMessage: `\x1b[31m\x1b[1m${msg_erro}\x1b[0m\n`});
+}
+
+// Formatacao dos titulos
+function titulo(msg){
+    return `\x1b[107m\x1b[1m          ${msg}          \x1b[0m\n`
+}
 
 //==================================================================================================================
 
@@ -50,24 +67,23 @@ const livro2 = {
 
 //array contendo os objetos cadastrados
 acervo = [livro1, livro2];
-acervo = [livro1 , livro2];
 
 while (loop) {
     console.clear(); // Limpa a tela do terminal toda vez que o loop inicia
-    console.log("__________CATALOGO_DE_LIVROS__________\n")
-    console.log("                 MENU\n");
+    console.log(titulo("CATALOGO DE LIVROS"));
     console.log("1 - Listar livros registrados");
     console.log("2 - Cadastrar novo livro");
     console.log("3 - Buscar livro");
     console.log("4 - Alterar livro");
     console.log("5 - Remover livro");
-    console.log("0 - Sair do sistema");
-    op = readline.questionInt("\nEscolha uma opcao: ");
+    console.log("0 - Sair do sistema\n");
+    
+    op = pergunta([0,1,2,3,4,5]);
 
     nao_encontrou = true; //este valor deve ser true a cada início do loop, para indicar quando um livro cadastrado não for encontrado durante a busca, alteração e remoção.
 
     switch (op) {
-        case 1:
+        case "1":
             console.clear();
             console.log("__________LISTAGEM DOS LIVROS CADASTRADOS__________\n");
 
@@ -85,7 +101,8 @@ while (loop) {
             readline.keyInPause();
             break;
 
-        case 2:
+        case "2":
+            console.clear();
             console.log("__________CADASTRO DE LIVRO__________\n");
             tituloLivro = readline.question("Digite o titulo do livro: ");
             autorLivro = readline.question("Digite o autor do livro: ");
@@ -120,10 +137,43 @@ while (loop) {
             readline.keyInPause();
             break;
 
-        case 3:
+        case "3":
+            do {
+                console.clear();
+                continuar = true;
+                nao_encontrou = true;
+                console.log(titulo("BUSCAR LIVRO"));
+                isbnBusca = readline.question('Digite o ISBN do livro: ');
+                for (const livro of acervo) {
+                    if (livro.isbn === isbnBusca) {
+                        console.log(`\n\x1b[92mLivro encontrado:\x1b[0m\n`);
+                        console.log(`${livro.titulo}`.toUpperCase());
+                        console.log("------------------------------------------------------------------");
+                        console.log(`Autor principal: ${livro.autor}`);
+                        console.log(`Outros autores:  ${livro.outrosAutores}`);
+                        console.log(`Edição:          ${livro.edicao}`);
+                        console.log(`Paginas:         ${livro.paginas}`);
+                        console.log(`Publicação:      ${livro.publicacao}`);
+                        console.log(`ISBN:            ${livro.isbn}`);
+                        console.log(`assuntos:        ${livro.assuntos}`);
+                        nao_encontrou = false;
+                    }
+                }
+                if (nao_encontrou) { 
+                    console.log(`\n\x1b[31m\x1b[1mNenhum registro com o ISBN ${isbnBusca} foi encontrado.\x1b[0m`);
+                }
+                console.log("\nRealizar uma nova busca?\n1 - Sim\n2 - Não\n")
+                op = pergunta([1,2]);
+                switch (op) {
+                    case "1":
+                        break;
+                    case "2":
+                        continuar = false;
+                        break;
+                }
+            } while (continuar == true);
             break;
-
-        case 4:
+        case "4":
             console.clear();
             console.log("__________ALTERANDO CADASTRO DE LIVRO__________\n");
             isbnBusca = readline.question('Digite o ISBN do livro: ');
@@ -174,7 +224,6 @@ ____________________
                                 
                                 readline.keyInPause();
                                 acervo[posicao] = livro_alterado;
-                                acervo[posicao] = livro_alterado;
                             
                                 do {
                                     continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
@@ -188,7 +237,6 @@ ____________________
                                     }
                                 } while (continuar != 'sim' && continuar != 'nao');
                                 break;
-                                        break;
 
                             case 2:
                                 autorLivro = readline.question('Digite o autor do livro: ');
@@ -206,7 +254,6 @@ ____________________
                                 console.log(`assuntos:        ${livro.assuntos}\n\n`);
 
                                 readline.keyInPause();
-                                acervo[posicao] = livro_alterado;
                                 acervo[posicao] = livro_alterado;
                             
                                 do {
@@ -239,7 +286,6 @@ ____________________
 
                                 readline.keyInPause();
                                 acervo[posicao] = livro_alterado;
-                                acervo[posicao] = livro_alterado;
                             
                                 do {
                                     continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
@@ -270,7 +316,6 @@ ____________________
                                 console.log(`assuntos:        ${livro.assuntos}\n\n`);
                                 
                                 readline.keyInPause();
-                                acervo[posicao] = livro_alterado;
                                 acervo[posicao] = livro_alterado;
                             
                                 do {
@@ -303,7 +348,6 @@ ____________________
                                 
                                 readline.keyInPause();
                                 acervo[posicao] = livro_alterado;
-                                acervo[posicao] = livro_alterado;
                             
                                 do {
                                     continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
@@ -334,7 +378,6 @@ ____________________
                                 console.log(`assuntos:        ${livro.assuntos}\n\n`);
                                 
                                 readline.keyInPause();
-                                acervo[posicao] = livro_alterado;
                                 acervo[posicao] = livro_alterado;
                             
                                 do {
@@ -374,7 +417,6 @@ ____________________
                                 
                                 readline.keyInPause();
                                 acervo[posicao] = livro_alterado;
-                                acervo[posicao] = livro_alterado;
                             
                                 do {
                                     continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
@@ -400,8 +442,6 @@ ____________________
                     } while (alterar);
                     nao_encontrou = false;
                     break;
-                          nao_encontrou = false;
-                          break;
                 }
             }
             if (nao_encontrou) {
@@ -410,7 +450,7 @@ ____________________
             }
             break;
 
-        case 5:
+        case "5":
             console.log("__________REMOVENDO CADASTRO DE LIVRO__________\n");
             isbnBusca = readline.question('Digite o ISBN do livro: ');
             for (const livro of acervo) {
@@ -447,13 +487,9 @@ ____________________
             }
             readline.keyInPause();
             break;
-        case 0:
+        case "0":
             console.log("\nFechando sistema de catálogo...");
             loop = false;
-            break;
-        default:
-            console.log("\nOpção inválida!\n\n");
-            readline.keyInPause();
             break;
     }
 }
