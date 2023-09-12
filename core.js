@@ -104,21 +104,40 @@ while (loop) {
         case "2":
             console.clear();
             console.log("__________CADASTRO DE LIVRO__________\n");
-            tituloLivro = readline.question("Digite o titulo do livro: ");
+            while(loop){
+                tituloLivro = readline.question("Digite o titulo do livro: ");
+                if(tituloLivro.length !==0 ){
+                    break;
+                }else{
+                    console.log("------------------------------------------------------")
+                    console.log("Campo Obrigatorio! Por favor forneça o Titulo do livro")
+                    console.log("------------------------------------------------------")
+                }
+            }
             autorLivro = readline.question("Digite o nome do autor do livro: ");
             outrosAutoresLivro = readline.question("Digite o nome dos outros autores (ex: autor1,autor2):").split(',');
             edicaoLivro = readline.question("Digite o numero da edicao do livro: ");
             paginasLivro = readline.question("Digite o numero de paginas do livro: ");
             publicacaoLivro = readline.question("Digite a publicacao do livro (ex: Sao Paulo: Companhia das Letras, 2000): ");
-            isbnLivro = readline.question("Digite o ISBN do livro: ");
-
-            while (true) {
+            while(loop){
+                isbnLivro = readline.question("Digite o ISBN do livro: ");
+                if(isbnLivro.length !==0 ){
+                    break;
+                }else{
+                    console.log("----------------------------------------------------")
+                    console.log("Campo Obrigatorio! Por favor forneça o ISBN do livro")
+                    console.log("----------------------------------------------------")
+                }
+            }
+            while (loop) {
                 assuntosLivro = readline.question("Digite os assuntos do livro separados por virgula (ex: assunto1,assunto2): ");
                 if (assuntosLivro.length !== 0) {
                     assuntosLivro = assuntosLivro.split(',');
                     break;
                 } else {
+                    console.log("-----------------------------------------")
                     console.log("Pelo menos um assunto deve ser fornecido.");
+                    console.log("-----------------------------------------")
                 }
             }
             const livro = {
@@ -142,7 +161,7 @@ while (loop) {
             console.log(`Paginas:         ${livro.paginas}`);
             console.log(`Publicacao:      ${livro.publicacao}`);
             console.log(`ISBN:            ${livro.isbn}`);
-            console.log(`assuntos:        ${livro.assuntos}\n\n`);
+            console.log(`Assuntos:        ${livro.assuntos}\n\n`);
 
             readline.keyInPause();
             break;
