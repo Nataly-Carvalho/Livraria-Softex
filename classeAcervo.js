@@ -175,10 +175,295 @@ class banco {
                 break;
         }
     } while (continuar == true);
-
-
-    
-
  }
-}
 
+
+ alterar() {
+    console.clear();
+    console.log("\n__________ALTERANDO CADASTRO DE LIVRO__________\n");
+    isbnBusca = readline.question('Digite o ISBN do livro: ');
+    for (const livro of this.acervo) {
+        if (livro.isbn === isbnBusca) {
+                    posicao = acervo.indexOf(livro);
+                    livro_alterado = acervo[posicao];
+                    console.log('\n\tLivro encontrado:\n');
+                    console.log(`${livro.titulo}`.toUpperCase());
+                    console.log("------------------------------------------------------------------");
+                    console.log(`Autor principal: ${livro.autor}`);
+                    console.log(`Outros autores:  ${livro.outrosAutores}`);
+                    console.log(`Edicao:          ${livro.edicao}`);
+                    console.log(`Paginas:         ${livro.paginas}`);
+                    console.log(`Publicacao:      ${livro.publicacao}`);
+                    console.log(`ISBN:            ${livro.isbn}`);
+                    console.log(`assuntos:        ${livro.assuntos}\n\n`);
+
+                    do {
+                        op = readline.questionInt(`
+O que deseja alterar?
+---------------------
+1. Titulo
+2. Autor Principal
+3. Outros autores
+4. Edicao
+5. Publicacao
+6. Paginas 
+7. ISBN
+8. Assuntos
+0. Sair
+____________________
+=> `);
+
+                        switch (op) {
+                            case 1:
+                                while(loop){
+                                    tituloLivro = readline.question("Digite o titulo do livro: ");
+                                    if(tituloLivro.length !==0 ){
+                                        livro_alterado.titulo = tituloLivro;
+                                        acervo[posicao] = livro_alterado;
+                                        break;
+                                    }else{
+                                        console.log("------------------------------------------------------")
+                                        console.log("Campo Obrigatorio! Por favor forneça o Titulo do livro")
+                                        console.log("------------------------------------------------------")
+                                    }
+                                }
+                                console.log('\n\tAlteracao realizada com sucesso!\n');
+                                console.log(`${livro.titulo}`.toUpperCase());
+                                console.log("------------------------------------------------------------------");
+                                console.log(`Autor principal: ${livro.autor}`);
+                                console.log(`Outros autores:  ${livro.outrosAutores}`);
+                                console.log(`Edicao:          ${livro.edicao}`);
+                                console.log(`Paginas:         ${livro.paginas}`);
+                                console.log(`Publicacao:      ${livro.publicacao}`);
+                                console.log(`ISBN:            ${livro.isbn}`);
+                                console.log(`assuntos:        ${livro.assuntos}\n\n`);
+                                
+                            
+                                do {
+                                    continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
+                                    continuar = continuar.toLowerCase();
+                                    if (continuar == 'sim') {
+                                        alterar = true;
+                                    } else if (continuar == 'nao') {
+                                        alterar = false;
+                                    } else {
+                                        console.log('\nERRO: Resposta invalida!');
+                                    }
+                                } while (continuar != 'sim' && continuar != 'nao');
+                                break;
+
+                            case 2:
+                                autorLivro = readline.question('Digite o nome do autor do livro: ');
+                                livro_alterado.autor = autorLivro;
+                                acervo[posicao] = livro_alterado;
+
+                                console.log('\n\tAlteracao realizada com sucesso!\n');
+                                console.log(`${livro.titulo}`.toUpperCase());
+                                console.log("------------------------------------------------------------------");
+                                console.log(`Autor principal: ${livro.autor}`);
+                                console.log(`Outros autores:  ${livro.outrosAutores}`);
+                                console.log(`Edicao:          ${livro.edicao}`);
+                                console.log(`Paginas:         ${livro.paginas}`);
+                                console.log(`Publicacao:      ${livro.publicacao}`);
+                                console.log(`ISBN:            ${livro.isbn}`);
+                                console.log(`assuntos:        ${livro.assuntos}\n\n`);
+
+                            
+                                do {
+                                    continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
+                                    continuar = continuar.toLowerCase();
+                                    if (continuar == 'sim') {
+                                        alterar = true;
+                                    } else if (continuar == 'nao') {
+                                        alterar = false;
+                                    } else {
+                                        console.log('\nResposta invalida!');
+                                    }
+                                } while (continuar != 'sim' && continuar != 'nao');
+                                break;
+                            
+                            case 3:
+                                outrosAutoresLivro = readline.question("Digite o nome dos outros autores (ex: autor1,autor2):").split(',');
+                                livro_alterado.outrosAutores = outrosAutoresLivro;
+                                acervo[posicao] = livro_alterado;
+
+                                console.log('\n\tAlteracao realizada com sucesso!\n');
+                                console.log(`${livro.titulo}`.toUpperCase());
+                                console.log("------------------------------------------------------------------");
+                                console.log(`Autor principal: ${livro.autor}`);
+                                console.log(`Outros autores:  ${livro.outrosAutores}`);
+                                console.log(`Edicao:          ${livro.edicao}`);
+                                console.log(`Paginas:         ${livro.paginas}`);
+                                console.log(`Publicacao:      ${livro.publicacao}`);
+                                console.log(`ISBN:            ${livro.isbn}`);
+                                console.log(`assuntos:        ${livro.assuntos}\n\n`);
+
+                            
+                                do {
+                                    continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
+                                    continuar = continuar.toLowerCase();
+                                    if (continuar == 'sim') {
+                                        alterar = true;
+                                    } else if (continuar == 'nao') {
+                                        alterar = false;
+                                    } else {
+                                        console.log('\nResposta invalida!');
+                                    }
+                                } while (continuar != 'sim' && continuar != 'nao');
+                                break;
+
+                            case 4:
+                                edicaoLivro = readline.question('Digite o número da edicao do livro: ');
+                                livro_alterado.edicao = edicaoLivro;
+                                acervo[posicao] = livro_alterado;
+    
+                                console.log('\n\tAlteracao realizada com sucesso!\n');
+                                console.log(`${livro.titulo}`.toUpperCase());
+                                console.log("------------------------------------------------------------------");
+                                console.log(`Autor principal: ${livro.autor}`);
+                                console.log(`Outros autores:  ${livro.outrosAutores}`);
+                                console.log(`Edicao:          ${livro.edicao}`);
+                                console.log(`Paginas:         ${livro.paginas}`);
+                                console.log(`Publicacao:      ${livro.publicacao}`);
+                                console.log(`ISBN:            ${livro.isbn}`);
+                                console.log(`assuntos:        ${livro.assuntos}\n\n`);
+
+                            
+                                do {
+                                    continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
+                                    continuar = continuar.toLowerCase();
+                                    if (continuar == 'sim') {
+                                        alterar = true;
+                                    } else if (continuar == 'nao') {
+                                        alterar = false;
+                                    } else {
+                                        console.log('\nResposta invalida!');
+                                    }
+                                } while (continuar != 'sim' && continuar != 'nao');
+                                break;
+
+                            case 5:
+                                publicacaoLivro = readline.question('Digite a publicacao do livro (ex: São Paulo: Companhia das Letras, 2000): ');
+                                livro_alterado.publicacao = publicacaoLivro;
+                                acervo[posicao] = livro_alterado;
+
+                                console.log('\n\tAlteracao realizada com sucesso!\n');
+                                console.log(`${livro.titulo}`.toUpperCase());
+                                console.log("------------------------------------------------------------------");
+                                console.log(`Autor principal: ${livro.autor}`);
+                                console.log(`Outros autores:  ${livro.outrosAutores}`);
+                                console.log(`Edicao:          ${livro.edicao}`);
+                                console.log(`Paginas:         ${livro.paginas}`);
+                                console.log(`Publicacao:      ${livro.publicacao}`);
+                                console.log(`ISBN:            ${livro.isbn}`);
+                                console.log(`assuntos:        ${livro.assuntos}\n\n`);
+                                
+                    
+                                do {
+                                    continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
+                                    continuar = continuar.toLowerCase();
+                                    if (continuar == 'sim') {
+                                        alterar = true;
+                                    } else if (continuar == 'nao') {
+                                        alterar = false;
+                                    } else {
+                                        console.log('\nResposta invalida!');
+                                    }
+                                } while (continuar != 'sim' && continuar != 'nao');
+                                break;
+
+                            case 6:
+                                paginasLivro = readline.question('Digite o numero de paginas do livro: ');
+                                livro_alterado.paginas = paginasLivro;
+                                acervo[posicao] = livro_alterado;
+
+                                console.log('\n\tAlteracao realizada com sucesso!\n');
+                                console.log(`${livro.titulo}`.toUpperCase());
+                                console.log("------------------------------------------------------------------");
+                                console.log(`Autor principal: ${livro.autor}`);
+                                console.log(`Outros autores:  ${livro.outrosAutores}`);
+                                console.log(`Edicao:          ${livro.edicao}`);
+                                console.log(`Paginas:         ${livro.paginas}`);
+                                console.log(`Publicacao:      ${livro.publicacao}`);
+                                console.log(`ISBN:            ${livro.isbn}`);
+                                console.log(`assuntos:        ${livro.assuntos}\n\n`);
+                                
+                            
+                                do {
+                                    continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
+                                    continuar = continuar.toLowerCase();
+                                    if (continuar == 'sim') {
+                                        alterar = true;
+                                    } else if (continuar == 'nao') {
+                                        alterar = false;
+                                    } else {
+                                        console.log('\nResposta invalida!');
+                                    }
+                                } while (continuar != 'sim' && continuar != 'nao');
+                                break;
+
+                            case 7:
+                                while(loop){
+                                    nao_encontrou = true;
+                                    isbnLivro = readline.question("Digite o ISBN do livro: ");
+                                    for (const livro of acervo) {
+                                        if (livro.isbn === isbnLivro && livro_alterado === livro) {
+                                            nao_encontrou = true;
+                                        } else if (livro.isbn === isbnLivro && livro_alterado !== livro) {
+                                            nao_encontrou = false;
+                                            break;
+                                        }
+                                    }
+                    
+                                    if(isbnLivro.length !==0 && nao_encontrou === true){
+                                        livro_alterado.isbn = isbnLivro;
+                                        acervo[posicao] = livro_alterado;
+                                        break;
+                                    } else if(nao_encontrou == false) {
+                                        console.log("----------------------------------------------------");
+                                        console.log("                ISBN ja cadastrado!");
+                                        console.log("----------------------------------------------------");
+                                    }else {
+                                        console.log("----------------------------------------------------");
+                                        console.log("Campo Obrigatorio! Por favor forneça o ISBN do livro.");
+                                        console.log("----------------------------------------------------");
+                                    }
+                                }
+                                
+                                console.log('\n\tAlteracao realizada com sucesso!\n');
+                                console.log(`${livro.titulo}`.toUpperCase());
+                                console.log("------------------------------------------------------------------");
+                                console.log(`Autor principal: ${livro.autor}`);
+                                console.log(`Outros autores:  ${livro.outrosAutores}`);
+                                console.log(`Edicao:          ${livro.edicao}`);
+                                console.log(`Paginas:         ${livro.paginas}`);
+                                console.log(`Publicacao:      ${livro.publicacao}`);
+                                console.log(`ISBN:            ${livro.isbn}`);
+                                console.log(`assuntos:        ${livro.assuntos}\n\n`);
+                                
+                            
+                                do {
+                                    continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
+                                    continuar = continuar.toLowerCase();
+                                    if (continuar == 'sim') {
+                                        alterar = true;
+                                    } else if (continuar == 'nao') {
+                                        alterar = false;
+                                    } else {
+                                        console.log('\nResposta invalida!');
+                                    }
+                                } while (continuar != 'sim' && continuar != 'nao');
+
+                        }
+                    } while (alterar);
+                    nao_encontrou = false;
+                    break;
+        }
+    }
+    if (nao_encontrou) {
+        console.log('\nLivro nao encontrado!\n');
+        readline.keyInPause();
+    }
+    
+}
+}
