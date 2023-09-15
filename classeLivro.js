@@ -3,7 +3,7 @@ const readline = require('readline-sync');
 
 
 //criando a classe livro
-class livro {
+class Livro {
     constructor(titulo, autor, outrosAutores, edicao, publicacao, paginas, isbn, assuntos) {
         this.titulo = titulo;
         this.autor = autor;
@@ -101,7 +101,7 @@ console.log(`ISBN:            ${livro1.isbn}`);
 console.log(`assuntos:        ${livro1.assuntos}\n\n`);
 
 //criando um objeto livro2
-const livro2 = new livro();
+const livro2 = new Livro();
 
 //adicionando valores em livro2
 livro2.setTituloLivro = readline.question('Digite o titulo do livro: ');
@@ -129,3 +129,4 @@ console.log(`assuntos:        ${livro2.assuntos}\n\n`);
 
 
 
+export {Livro}
