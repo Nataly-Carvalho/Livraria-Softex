@@ -109,30 +109,29 @@ class banco {
                 console.log(`ISBN:            ${livro.getIsbnLivro}`);
                 console.log(`assuntos:        ${livro.getAssuntosLivro}\n\n`);
 
-                continuar = readline.question('\nDeseja cadastrar este livro? <sim / nao> : ');
+                continuar = readline.question('\nDeseja cadastrar este livro? <Digite 1 para sim ou 2 para nao>: ');
                 continuar = continuar.toLowerCase();
-                if (continuar == 'sim') {
+                if (continuar == "1") {
                     this.acervo.push(livro);
                     console.log("\n\tLivro cadastrado com sucesso!\n");
-                } else if (continuar == 'nao') {
+                } else if (continuar == '2') {
                     console.log("\n\tCadastrado descartado!\n");
                   } else {
                     console.log('\n\tResposta invalida!');
                     }
-            } while (continuar != 'sim' && continuar != 'nao');
+            } while (continuar != "1" && continuar != "2");
 
             //condição para continuar ou não cadastrando novos livros
             do {
-                continuar = readline.question('\nDeseja realizar um novo cadastro? <sim / nao> : ');
-                continuar = continuar.toLowerCase();
-                if (continuar == 'sim') {
+                continuar = readline.question('\nDeseja realizar um novo cadastro? <Digite 1 para sim ou 2 para nao>: ');
+                if (continuar == '1') {
                     loop = true;
-                } else if (continuar == 'nao') {
+                } else if (continuar == '2') {
                     loop = false;
                   } else {
                     console.log('\n\tResposta invalida!');
                     }
-            } while (continuar != 'sim' && continuar != 'nao');
+            } while (continuar != '1' && continuar != '2');
         }
     }
 
@@ -170,14 +169,14 @@ class banco {
             console.log(`\n\tNenhum registro com o ISBN ${isbnBusca} foi encontrado.`);
         }
         while(continuar) {
-            op = readline.question("\nRealizar uma nova busca? <sim / nao> : ");
+            op = readline.question("\nRealizar uma nova busca? <Digite 1 para sim ou 2 para nao> : ");
             op = op.toLowerCase();
             switch (op) {
-                case "sim":
+                case "1":
                     continuar = false;
                     loop = true;
                     break;
-                case "nao":
+                case "2":
                     continuar = false;
                     loop = false;
                     break;
@@ -275,16 +274,16 @@ ____________________
                                 
                             
                                     do {
-                                        continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
+                                        continuar = readline.question('\nDeseja continuar alterando este livro? <Digite 1 para sim ou 2 para nao> : ');
                                         continuar = continuar.toLowerCase();
-                                        if (continuar == 'sim') {
+                                        if (continuar == '1') {
                                             alterar = true;
-                                        } else if (continuar == 'nao') {
+                                        } else if (continuar == '2') {
                                             alterar = false;
                                         } else {
                                             console.log('\n\tERRO: Resposta invalida!');
                                         }
-                                    } while (continuar != 'sim' && continuar != 'nao');
+                                    } while (continuar != '1' && continuar != '2');
                                     break;
 
                                 case 2:
@@ -305,16 +304,15 @@ ____________________
 
                             
                                     do {
-                                        continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
-                                        continuar = continuar.toLowerCase();
-                                        if (continuar == 'sim') {
+                                        continuar = readline.question('\nDeseja continuar alterando este livro? <Digite 1 para sim ou 2 para nao>: ');
+                                        if (continuar == '1') {
                                             alterar = true;
-                                        } else if (continuar == 'nao') {
+                                        } else if (continuar == '2') {
                                             alterar = false;
                                         } else {
                                             console.log('\n\tResposta invalida!');
                                         }
-                                    } while (continuar != 'sim' && continuar != 'nao');
+                                    } while (continuar != '1' && continuar != '2');
                                     break;
                             
                                 case 3:
@@ -335,20 +333,20 @@ ____________________
 
                             
                                     do {
-                                        continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
+                                        continuar = readline.question('\nDeseja continuar alterando este livro? <Digite 1 para sim ou 2 para nao>: ');
                                         continuar = continuar.toLowerCase();
-                                        if (continuar == 'sim') {
+                                        if (continuar == '1') {
                                             alterar = true;
-                                        } else if (continuar == 'nao') {
+                                        } else if (continuar == '2') {
                                             alterar = false;
                                         } else {
                                             console.log('\n\tResposta invalida!');
                                         }
-                                    } while (continuar != 'sim' && continuar != 'nao');
+                                    } while (continuar != '1' && continuar != '2');
                                     break;
 
                                 case 4:
-                                    edicaoLivro = readline.question('\n\nDigite o número da edicao do livro: ');
+                                    edicaoLivro = readline.question('\n\nDigite o numero da edicao do livro: ');
                                     livro_alterado.setEdicaoLivro = edicaoLivro;
                                     this.acervo[posicao] = livro_alterado;
     
@@ -365,16 +363,15 @@ ____________________
 
                             
                                     do {
-                                        continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
-                                        continuar = continuar.toLowerCase();
-                                        if (continuar == 'sim') {
+                                        continuar = readline.question('\nDeseja continuar alterando este livro? <Digite 1 para sim ou 2 para nao>: ');
+                                        if (continuar == '1') {
                                             alterar = true;
-                                        } else if (continuar == 'nao') {
+                                        } else if (continuar == '2') {
                                             alterar = false;
                                         } else {
                                             console.log('\n\tResposta invalida!');
                                         }
-                                    } while (continuar != 'sim' && continuar != 'nao');
+                                    } while (continuar != '1' && continuar != '2');
                                     break;
 
                                 case 5:
@@ -395,16 +392,16 @@ ____________________
                                 
                     
                                     do {
-                                        continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
+                                        continuar = readline.question('\nDeseja continuar alterando este livro? <Digite 1 para sim ou 2 para nao>: ');
                                         continuar = continuar.toLowerCase();
-                                        if (continuar == 'sim') {
+                                        if (continuar == '1') {
                                             alterar = true;
-                                        } else if (continuar == 'nao') {
+                                        } else if (continuar == '2') {
                                             alterar = false;
                                         } else {
                                             console.log('\n\tResposta invalida!');
                                         }
-                                    } while (continuar != 'sim' && continuar != 'nao');
+                                    } while (continuar != '1' && continuar != '2');
                                     break;
 
                                 case 6:
@@ -425,16 +422,16 @@ ____________________
                                 
                             
                                     do {
-                                        continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
+                                        continuar = readline.question('\nDeseja continuar alterando este livro?  <Digite 1 para sim ou 2 para nao>: ');
                                         continuar = continuar.toLowerCase();
-                                        if (continuar == 'sim') {
+                                        if (continuar == '1') {
                                             alterar = true;
-                                        } else if (continuar == 'nao') {
+                                        } else if (continuar == '2') {
                                             alterar = false;
                                         } else {
                                             console.log('\n\tResposta invalida!');
                                         }
-                                    } while (continuar != 'sim' && continuar != 'nao');
+                                    } while (continuar != '1' && continuar != '2');
                                     break;
 
                                     case 7:
@@ -478,16 +475,16 @@ ____________________
                                     
                                 
                                         do {
-                                            continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
+                                            continuar = readline.question('\nDeseja continuar alterando este livro?  <Digite 1 para sim ou 2 para nao>: ');
                                             continuar = continuar.toLowerCase();
-                                            if (continuar == 'sim') {
+                                            if (continuar == '1') {
                                                 alterar = true;
-                                            } else if (continuar == 'nao') {
+                                            } else if (continuar == '2') {
                                                 alterar = false;
                                             } else {
                                                 console.log('\n\tResposta invalida!');
                                             }
-                                        } while (continuar != 'sim' && continuar != 'nao');
+                                        } while (continuar != '1' && continuar != '2');
                                         break;
                                     case 8:
                                         while (loop) {
@@ -518,16 +515,16 @@ ____________________
     
                                 
                                         do {
-                                            continuar = readline.question('\nDeseja continuar alterando este livro? <sim / nao> : ');
+                                            continuar = readline.question('\nDeseja continuar alterando este livro?  <Digite 1 para sim ou 2 para nao>: ');
                                             continuar = continuar.toLowerCase();
-                                            if (continuar == 'sim') {
+                                            if (continuar == '1') {
                                                 alterar = true;
-                                            } else if (continuar == 'nao') {
+                                            } else if (continuar == '2') {
                                                 alterar = false;
                                             } else {
                                                 console.log('\n\tResposta invalida!');
                                             }
-                                        } while (continuar != 'sim' && continuar != 'nao');
+                                        } while (continuar != '1' && continuar != '2');
                                         break;
     
                                     case 0:
@@ -548,16 +545,16 @@ ____________________
                     }
 
                     do {
-                        continuar = readline.question('\nDeseja alterar outro cadastro? <sim / nao> : ');
+                        continuar = readline.question('\nDeseja alterar outro cadastro?  <Digite 1 para sim ou 2 para nao>: ');
                         continuar = continuar.toLowerCase();
-                        if (continuar == 'sim') {
+                        if (continuar == '1') {
                             loop = true;
-                        } else if (continuar == 'nao') {
+                        } else if (continuar == '2') {
                             loop = false;
                         } else {
                             console.log('\n\tResposta invalida!');
                         }
-                    } while (continuar != 'sim' && continuar != 'nao');
+                    } while (continuar != '1' && continuar != '2');
         }
 
  }
@@ -593,17 +590,17 @@ ____________________
                 console.log(`assuntos:        ${livro.getAssuntosLivro}\n\n`);
    
                 do {
-                    remover = readline.question('\nDeseja remover o livro? <sim / nao> : ');
+                    remover = readline.question('\nDeseja remover o livro?  <Digite 1 para sim ou 2 para nao> : ');
                     remover = remover.toLowerCase();
-                    if (remover == 'sim') {
+                    if (remover == '1') {
                         this.acervo.splice(posicao, 1);
                         console.log('\n\tRemocao concluida!\n');
-                    } else if (remover == 'nao') {
+                    } else if (remover == '2') {
                         console.log('\n\tRemocao cancelada!');
                     } else {
                         console.log('\n\tResposta invalida! Tente novamente.');
                     }
-                } while (remover !== 'sim' && remover !== 'nao');
+                } while (remover !== '1' && remover !== '2');
             }
         }
         if (nao_encontrou) {
@@ -612,16 +609,16 @@ ____________________
    
         //condição para continuar ou não removendo livros
         do {
-           continuar = readline.question('\nDeseja realizar uma nova remocao? <sim / nao> : ');
+           continuar = readline.question('\nDeseja realizar uma nova remocao? <Digite 1 para sim ou 2 para nao>: ');
            continuar = continuar.toLowerCase();
-           if (continuar == 'sim') {
+           if (continuar == '1') {
                loop = true;
-           } else if (continuar == 'nao') {
+           } else if (continuar == '2') {
                loop = false;
              } else {
                console.log('\n\tResposta invalida!');
                }
-       } while (continuar != 'sim' && continuar != 'nao');
+       } while (continuar != '1' && continuar != '2');
 
     }
      
