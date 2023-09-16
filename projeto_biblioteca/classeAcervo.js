@@ -64,7 +64,7 @@ class banco {
 
             while(loop){
                 nao_encontrou = true;
-                livro.setIsbnLivro = readline.question("Digite o ISBN do livro: ");
+                livro.setIsbnLivro = readline.question("Digite o ISBN do livro (apenas numeros): ");
                 for (const book of this.acervo) {
                     if (book.isbn === livro.getIsbnLivro) {
                         nao_encontrou = false;
@@ -150,7 +150,7 @@ class banco {
         nao_encontrou = true;
         console.clear();
         console.log("\n__________BUSCAR LIVRO__________\n");
-        isbnBusca = readline.question('Digite o ISBN do livro: ');
+        isbnBusca = readline.question('Digite o ISBN do livro (apenas numeros): ');
         for (const livro of this.acervo) {
             if (livro.getIsbnLivro === isbnBusca) {
                 console.log(`\n\tLivro encontrado:\n`);
@@ -216,7 +216,7 @@ class banco {
 
         console.clear();
         console.log("\n__________ALTERANDO CADASTRO DE LIVRO__________\n");
-        isbnBusca = readline.question('Digite o ISBN do livro: ');
+        isbnBusca = readline.question('Digite o ISBN do livro (apenas numeros): ');
         for (const livro of this.acervo) {
             if (livro.getIsbnLivro === isbnBusca) {
                         posicao = this.acervo.indexOf(livro);
@@ -378,7 +378,7 @@ ____________________
                                     break;
 
                                 case 5:
-                                    publicacaoLivro = readline.question('\n\nDigite a publicacao do livro (ex: São Paulo: Companhia das Letras, 2000): ');
+                                    publicacaoLivro = readline.question('\n\nDigite a publicacao do livro (ex: Sao Paulo: Companhia das Letras, 2000): ');
                                     livro_alterado.setPublicacaoLivro = publicacaoLivro;
                                     this.acervo[posicao] = livro_alterado;
 
@@ -440,7 +440,7 @@ ____________________
                                     case 7:
                                         while(loop){
                                             nao_encontrou = true;
-                                            isbnLivro = readline.question("\n\nDigite o ISBN do livro: ");
+                                            isbnLivro = readline.question("\n\nDigite o ISBN do livro (apenas numeros): ");
                                             for (const livro of this.acervo) {
                                                 if (livro.isbn === isbnLivro && livro_alterado === livro) {
                                                     nao_encontrou = true;
@@ -572,10 +572,11 @@ ____________________
     let continuar;
 
     while(loop) {
+        nao_encontrou = true;
         loop = true;
         console.clear();
         console.log("\n__________REMOVENDO CADASTRO DE LIVRO__________\n");
-        let isbnBusca = readline.question('\nDigite o ISBN do livro: ');
+        let isbnBusca = readline.question('\nDigite o ISBN do livro (apenas numeros): ');
         for (const livro of this.acervo) {
             if (livro.isbn === isbnBusca) {
                 posicao = this.acervo.indexOf(livro);
@@ -626,7 +627,7 @@ ____________________
      
  }
 
-
+ 
  sair() {
     console.log("\nFechando sistema de catálogo...");
     loop = false;
@@ -636,61 +637,5 @@ ____________________
 }
 
 
-//MÓDULO MAIN
-//variáveis globais
-let loop = true;
-
-//criação do objeto bancoAcervo
-const bancoAcervo = new banco();
-
-// Livros de exemplo
-const livro1 = new Livro("A Economia da Naureza", "Robert E. Ricklefs", "", "2", "Rio de Janeiro: Guanabara Koogan, 2016", "606", "9788527728768", ["Ecologia", "Diversidade biologica", "Ecossistemas", "Comunidades vegetais"]);
-const livro2 = new Livro("A Historia da Gastronomia", "Maria Leonor de Macedo Soares Leal", "", "1", "Rio de Janeiro: Senac, 2005", "137", "8585746777", ["Gastronomia", "Culinaria", "Tecnologia de alimentos", "Historia"]);
-
-//adicionando os dois livros supracitados no bancoAcervo
-bancoAcervo.acervo.push(livro1);
-bancoAcervo.acervo.push(livro2);
-
-//MENU
-while(loop) {
-    console.clear();
-    console.log("\n\n======CATALOGO DE LIVROS======");
-    console.log("1 - Listar livros registrados");
-    console.log("2 - Cadastrar novo livro");
-    console.log("3 - Buscar livro");
-    console.log("4 - Alterar livro");
-    console.log("5 - Remover livro");
-    console.log("0 - Sair do sistema\n");
-
-    let op = readline.question('OP: ');
-
-    switch(op) {
-        case "1":
-            bancoAcervo.listar();
-            break;
-        
-        case "2":
-            bancoAcervo.cadastrar();
-            break;
-        
-            case "3":
-                bancoAcervo.buscar();
-                break;
-            
-            case "4":
-                bancoAcervo.alterar();
-                break;
-            
-            case "5":
-                bancoAcervo.remover();
-                break;
-            
-            case "0":
-                bancoAcervo.sair();
-                break;
-            
-            default:
-                console.log('\nOpcao invalida!\n');
-                break;
-    }
-}
+//exportando a classe banco
+export {banco}
