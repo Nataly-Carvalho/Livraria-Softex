@@ -7,6 +7,12 @@ import {Livro} from "./classeLivro.js"
 //importando a classe banco
 import {banco} from "./classeAcervo.js"
 
+// importando funcao auxiliar
+import {padrao} from "./funcaoAuxiliar.js"
+
+
+
+
 //variáveis globais
 let loop = true;
 
