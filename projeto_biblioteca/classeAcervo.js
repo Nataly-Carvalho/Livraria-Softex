@@ -127,7 +127,6 @@ buscar() {
     let isbnBusca;
 
     while(loop) {
-        continuar = true;
         nao_encontrou = true;
         console.clear();
         padrao("titulo","","BUSCAR LIVRO");
@@ -156,7 +155,6 @@ buscar() {
         }
     }
 }
-
 
  alterar() {
     //variáveis locais
@@ -528,25 +526,24 @@ ____________________
  }
 
 
- remover() {
+remover() {
     //variáveis locais
     let posicao;
-    let nao_encontrou = true;
+    let nao_encontrou;
     let remover;
     let loop = true;
     let continuar;
+    let isbnBusca;
 
     while(loop) {
         nao_encontrou = true;
-        loop = true;
         console.clear();
-        console.log("\n__________REMOVENDO CADASTRO DE LIVRO__________\n");
-        let isbnBusca = readline.question('\nDigite o ISBN do livro (apenas numeros): ');
+        padrao("titulo","","REMOVENDO CADASTRO DE LIVRO");
+        isbnBusca = readline.question("Digite o ISBN do livro (apenas numeros): ");
         for (const livro of this.acervo) {
             if (livro.isbn === isbnBusca) {
                 posicao = this.acervo.indexOf(livro);
-                nao_encontrou = false;
-                console.log('\n\tLivro encontrado:\n');
+                padrao("positivo","","Livro encontrado:");
                 console.log(`${livro.getTituloLivro}`.toUpperCase());
                 console.log("------------------------------------------------------------------");
                 console.log(`Autor principal: ${livro.getAutorLivro}`);
@@ -555,52 +552,33 @@ ____________________
                 console.log(`Paginas:         ${livro.getPaginasLivro}`);
                 console.log(`Publicacao:      ${livro.getPublicacaoLivro}`);
                 console.log(`ISBN:            ${livro.getIsbnLivro}`);
-                console.log(`assuntos:        ${livro.getAssuntosLivro}\n\n`);
-   
-                do {
-                    remover = readline.question('\nDeseja remover o livro?  <Digite 1 para sim ou 2 para nao> : ');
-                    remover = remover.toLowerCase();
-                    if (remover == '1') {
-                        this.acervo.splice(posicao, 1);
-                        console.log('\n\tRemocao concluida!\n');
-                    } else if (remover == '2') {
-                        console.log('\n\tRemocao cancelada!');
-                    } else {
-                        console.log('\n\tResposta invalida! Tente novamente.');
-                    }
-                } while (remover !== '1' && remover !== '2');
+                console.log(`Assuntos:        ${livro.getAssuntosLivro}\n\n`);
+                nao_encontrou = false;
+
+                remover = padrao("pergunta",[1,2],"Deseja remover o livro?\n\n1 - Sim\n2 - Não\n\nEscolha uma opção: ");
+                if (remover == "1") {
+                    this.acervo.splice(posicao, 1);
+                    padrao("positivo","","Remoção concluida!");
+                } else if (remover == "2") {
+                    padrao("positivo","","Remoção cancelada!");
+                }
             }
         }
-        if (nao_encontrou) {
-            console.log('\n\tLivro nao encontrado!\n');
+        if (nao_encontrou) { 
+            padrao("aviso","",`Nenhum registro com o ISBN ${isbnBusca} foi encontrado.`);
         }
-   
         //condição para continuar ou não removendo livros
-        do {
-           continuar = readline.question('\nDeseja realizar uma nova remocao? <Digite 1 para sim ou 2 para nao>: ');
-           continuar = continuar.toLowerCase();
-           if (continuar == '1') {
-               loop = true;
-           } else if (continuar == '2') {
-               loop = false;
-             } else {
-               console.log('\n\tResposta invalida!');
-               }
-       } while (continuar != '1' && continuar != '2');
-
+        continuar = padrao("pergunta",[1,2],"Realizar uma nova remoção?\n\n1 - Sim\n2 - Não\n\nEscolha uma opção: ");
+        if (continuar == "2") {
+            loop = false;
+        }
     }
-     
- }
-
- 
- sair() {
-    console.log("\nFechando sistema de catálogo...");
+}
+sair() {
+    padrao("aviso","","Fechando sistema de catálogo...");
     loop = false;
- }
-
-
 }
 
-
+}
 //exportando a classe banco
-export {banco}
+export {banco};
