@@ -16,9 +16,9 @@ function padrao(tipo, opcoes=[0,1,2], msg="Escolha uma opção: ", erro="Opção
     } else if (tipo == "aviso") {
         console.log(`\n\x1b[33m\x1b[1m${msg}\x1b[0m\n`);
     } else if (tipo == "erro") {
-        console.log(`\x1b[31m\x1b[1m${msg}\x1b[0m\n`);
+        console.log(`\n\x1b[31m\x1b[1m${msg}\x1b[0m\n`);
     }else if (tipo == "pergunta") {
-        return readline.question(msg, {limit: opcoes, limitMessage: `\x1b[31m\x1b[1m${erro}\x1b[0m\n`});
+        return readline.question(`\n${msg}`, {limit: opcoes, limitMessage: `\x1b[31m\x1b[1m${erro}\x1b[0m\n`});
     }
 }
 
