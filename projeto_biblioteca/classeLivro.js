@@ -1,7 +1,3 @@
-//habilitando a biblioteca readline-sync
-import readline from "readline-sync";
-
-
 //criando a classe livro
 class Livro {
     constructor(titulo, autor, outrosAutores, edicao, publicacao, paginas, isbn, assuntos) {
@@ -84,4 +80,4 @@ class Livro {
 }
 
 //exportando a classe livro
-export {Livro}
+export {Livro};
