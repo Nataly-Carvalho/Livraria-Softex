@@ -122,20 +122,19 @@ class banco {
 buscar() {
     //variáveis locais
     let loop = true;
-    let continuar = true;
-    let nao_encontrou = true;
-    let op;
+    let continuar;
+    let nao_encontrou;
     let isbnBusca;
 
     while(loop) {
         continuar = true;
         nao_encontrou = true;
         console.clear();
-        console.log("\n__________BUSCAR LIVRO__________\n");
-        isbnBusca = readline.question('Digite o ISBN do livro (apenas numeros): ');
+        padrao("titulo","","BUSCAR LIVRO");
+        isbnBusca = readline.question("Digite o ISBN do livro (apenas numeros): ");
         for (const livro of this.acervo) {
             if (livro.getIsbnLivro === isbnBusca) {
-                console.log(`\n\tLivro encontrado:\n`);
+                padrao("positivo","","Livro encontrado:");
                 console.log(`${livro.getTituloLivro}`.toUpperCase());
                 console.log("------------------------------------------------------------------");
                 console.log(`Autor principal: ${livro.getAutorLivro}`);
@@ -144,32 +143,18 @@ buscar() {
                 console.log(`Paginas:         ${livro.getPaginasLivro}`);
                 console.log(`Publicacao:      ${livro.getPublicacaoLivro}`);
                 console.log(`ISBN:            ${livro.getIsbnLivro}`);
-                console.log(`assuntos:        ${livro.getAssuntosLivro}\n\n`);
+                console.log(`Assuntos:        ${livro.getAssuntosLivro}\n\n`);
                 nao_encontrou = false;
             }
         }
         if (nao_encontrou) { 
-            console.log(`\n\tNenhum registro com o ISBN ${isbnBusca} foi encontrado.`);
+            padrao("aviso","",`Nenhum registro com o ISBN ${isbnBusca} foi encontrado.`);
         }
-        while(continuar) {
-            op = readline.question("\nRealizar uma nova busca? <Digite 1 para sim ou 2 para nao> : ");
-            op = op.toLowerCase();
-            switch (op) {
-                case "1":
-                    continuar = false;
-                    loop = true;
-                    break;
-                case "2":
-                    continuar = false;
-                    loop = false;
-                    break;
-            default:
-                console.log('\n\tResposta invalida!\n');
-                break;
+        continuar = padrao("pergunta",[1,2],"Realizar uma nova busca?\n\n1 - Sim\n2 - Não\n\nEscolha uma opção: ");
+        if (continuar == "2") {
+            loop = false;
         }
     }
- }
-
 }
 
 
