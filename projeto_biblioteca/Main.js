@@ -1,6 +1,3 @@
-//habilitando a biblioteca readline-sync
-import readline from "readline-sync";
-
 //importando a classe livro
 import {Livro} from "./classeLivro.js"
 
@@ -9,8 +6,6 @@ import {banco} from "./classeAcervo.js"
 
 // importando funcao auxiliar
 import {padrao} from "./funcaoAuxiliar.js"
-
-
 
 
 //variáveis globais
@@ -30,7 +25,7 @@ bancoAcervo.acervo.push(livro2);
 //MENU
 while(loop) {
     console.clear();
-    console.log("\n\n======CATALOGO DE LIVROS======");
+    padrao("titulo","","CATALOGO DE LIVROS");
     console.log("1 - Listar livros registrados");
     console.log("2 - Cadastrar novo livro");
     console.log("3 - Buscar livro");
@@ -38,7 +33,7 @@ while(loop) {
     console.log("5 - Remover livro");
     console.log("0 - Sair do sistema\n");
 
-    let op = readline.question('OP: ');
+    let op = padrao("pergunta",[0,1,2,3,4,5]);
 
     switch(op) {
         case "1":
@@ -49,25 +44,21 @@ while(loop) {
             bancoAcervo.cadastrar();
             break;
         
-            case "3":
-                bancoAcervo.buscar();
-                break;
-            
-            case "4":
-                bancoAcervo.alterar();
-                break;
-            
-            case "5":
-                bancoAcervo.remover();
-                break;
-            
-            case "0":
-                console.log("\nFechando sistema de catálogo...");
-                loop = false;
-                break;
-            
-            default:
-                console.log('\nOpcao invalida!\n');
-                break;
+        case "3":
+            bancoAcervo.buscar();
+            break;
+        
+        case "4":
+            bancoAcervo.alterar();
+            break;
+        
+        case "5":
+            bancoAcervo.remover();
+            break;
+        
+        case "0":
+            padrao("aviso","","\nFechando sistema de catálogo...\n");
+            loop = false;
+            break;
     }
 }
