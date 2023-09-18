@@ -91,35 +91,30 @@ class banco {
             }
 
             //condição para cadastrar ou não o livro
-            do {
-                console.log(`\n${livro.getTituloLivro}`.toUpperCase());
-                console.log("------------------------------------------------------------------");
-                console.log(`Autor principal: ${livro.getAutorLivro}`);
-                console.log(`Outros autores:  ${livro.getOutrosAutoresLivro}`);
-                console.log(`Edicao:          ${livro.getEdicaoLivro}`);
-                console.log(`Paginas:         ${livro.getPaginasLivro}`);
-                console.log(`Publicacao:      ${livro.getPublicacaoLivro}`);
-                console.log(`ISBN:            ${livro.getIsbnLivro}`);
-                console.log(`Assuntos:        ${livro.getAssuntosLivro}\n\n`);
-
-                continuar = padrao("pergunta",[1,2], "Deseja cadastrar este livro?\n\n1 - Sim\n2 - Não\n\nEscolha uma opção: ");
-                if (continuar == "1") {
-                    this.acervo.push(livro);
-                    padrao("positivo","","Livro cadastrado com sucesso!");
-                } else if (continuar == '2') {
-                    padrao("aviso","","Cadastro descartado!");
-                }
-            } while (continuar != "1" && continuar != "2");
+            console.log(`\n${livro.getTituloLivro}`.toUpperCase());
+            console.log("------------------------------------------------------------------");
+            console.log(`Autor principal: ${livro.getAutorLivro}`);
+            console.log(`Outros autores:  ${livro.getOutrosAutoresLivro}`);
+            console.log(`Edicao:          ${livro.getEdicaoLivro}`);
+            console.log(`Paginas:         ${livro.getPaginasLivro}`);
+            console.log(`Publicacao:      ${livro.getPublicacaoLivro}`);
+            console.log(`ISBN:            ${livro.getIsbnLivro}`);
+            console.log(`Assuntos:        ${livro.getAssuntosLivro}\n\n`);
+            continuar = padrao("pergunta",[1,2], "Deseja cadastrar este livro?\n\n1 - Sim\n2 - Não\n\nEscolha uma opção: ");
+            if (continuar == "1") {
+                this.acervo.push(livro);
+                padrao("positivo","","Livro cadastrado com sucesso!");
+            } else if (continuar == "2") {
+                padrao("aviso","","Cadastro descartado!");
+            }
 
             //condição para continuar ou não cadastrando novos livros
-            do {
                 continuar = padrao("pergunta",[1,2], "Deseja realizar um novo cadastro?\n\n1 - Sim\n2 - Não\n\nEscolha uma opção: ");
                 if (continuar == '1') {
                     loop = true;
                 } else if (continuar == '2') {
                     loop = false;
                 }
-            } while (continuar != '1' && continuar != '2');
         }
     }
 
