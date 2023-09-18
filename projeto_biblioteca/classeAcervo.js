@@ -525,7 +525,6 @@ ____________________
 
  }
 
-
 remover() {
     //variáveis locais
     let posicao;
@@ -574,11 +573,6 @@ remover() {
         }
     }
 }
-sair() {
-    padrao("aviso","","Fechando sistema de catálogo...");
-    loop = false;
-}
-
 }
 //exportando a classe banco
 export {banco};
