@@ -4,6 +4,9 @@ import readline from "readline-sync";
 //importando a classe livro
 import {Livro} from "./classeLivro.js"
 
+// importando funcao auxiliar
+import {padrao} from "./funcaoAuxiliar.js"
+
 //classe banco
 class banco {
     constructor() {
@@ -13,7 +16,7 @@ class banco {
     //métodos do menu
     listar() {
         console.clear();
-        console.log("\n__________LISTAGEM DOS LIVROS CADASTRADOS__________\n");
+        padrao("titulo","","LISTAGEM DOS LIVROS CADASTRADOS");
 
         for (const livro of this.acervo){
             console.log(`${livro.getTituloLivro}`.toUpperCase());
@@ -24,10 +27,10 @@ class banco {
             console.log(`Paginas:         ${livro.getPaginasLivro}`);
             console.log(`Publicacao:      ${livro.getPublicacaoLivro}`);
             console.log(`ISBN:            ${livro.getIsbnLivro}`);
-            console.log(`assuntos:        ${livro.getAssuntosLivro}\n\n`);
+            console.log(`Assuntos:        ${livro.getAssuntosLivro}\n\n`);
         }
 
-        readline.keyInPause();
+        readline.question('ENTER para continuar...', {hideEchoBack: true, mask: ''});
     }
 
 
@@ -39,22 +42,18 @@ class banco {
 
         while(loop) {
             console.clear();
-            console.log("\n__________CADASTRO DE LIVRO__________\n");
-        
+            padrao("titulo", "","CADASTRO DE LIVRO");
             //criando um novo objeto livro
             const livro = new Livro();
-
-           //adicionando valores no novo objeto livro
-           while(loop){
-            livro.setTituloLivro = readline.question("Digite o titulo do livro: ");
-            if(livro.titulo.length !==0 ){
-                break;
-            }else{
-                    console.log("------------------------------------------------------")
-                    console.log("Campo Obrigatorio! Por favor forneça o Titulo do livro")
-                    console.log("------------------------------------------------------\n")
+            //adicionando valores no novo objeto livro
+            while(loop){
+                livro.setTituloLivro = readline.question("Digite o titulo do livro: ");
+                if(livro.titulo.length !==0 ){
+                    break;
+                }else{
+                    padrao("aviso","","Campo Obrigatorio! Por favor forneça o Titulo do livro");
+                }
             }
-        }
 
             livro.setAutorLivro = readline.question("Digite o nome do autor do livro: ");
             livro.setOutrosAutoresLivro = readline.question("Digite o nome dos outros autores (ex: autor1,autor2):").split(',');
@@ -75,13 +74,9 @@ class banco {
                 if(livro.getIsbnLivro.length !==0 && nao_encontrou === true){
                     break;
                 } else if(nao_encontrou === false) {
-                    console.log("----------------------------------------------------");
-                    console.log("                ISBN ja cadastrado!");
-                    console.log("----------------------------------------------------\n");
-                  } else{
-                      console.log("----------------------------------------------------");
-                      console.log("Campo Obrigatorio! Por favor forneça o ISBN do livro.");
-                      console.log("----------------------------------------------------\n");
+                    padrao("aviso","","ISBN ja cadastrado!");
+                } else{
+                    padrao("aviso","","Campo Obrigatorio! Por favor forneça o ISBN do livro.");
                     }
             }
 
@@ -91,15 +86,13 @@ class banco {
                     livro.setAssuntosLivro = livro.assuntos.split(',');
                     break;
                 } else {
-                    console.log("-----------------------------------------");
-                    console.log("Pelo menos um assunto deve ser fornecido.");
-                    console.log("-----------------------------------------\n");
-                  }
+                    padrao("aviso","","Pelo menos um assunto deve ser fornecido.");
+                }
             }
 
             //condição para cadastrar ou não o livro
             do {
-                console.log(`\n\n${livro.getTituloLivro}`.toUpperCase());
+                console.log(`\n${livro.getTituloLivro}`.toUpperCase());
                 console.log("------------------------------------------------------------------");
                 console.log(`Autor principal: ${livro.getAutorLivro}`);
                 console.log(`Outros autores:  ${livro.getOutrosAutoresLivro}`);
@@ -107,36 +100,31 @@ class banco {
                 console.log(`Paginas:         ${livro.getPaginasLivro}`);
                 console.log(`Publicacao:      ${livro.getPublicacaoLivro}`);
                 console.log(`ISBN:            ${livro.getIsbnLivro}`);
-                console.log(`assuntos:        ${livro.getAssuntosLivro}\n\n`);
+                console.log(`Assuntos:        ${livro.getAssuntosLivro}\n\n`);
 
-                continuar = readline.question('\nDeseja cadastrar este livro? <Digite 1 para sim ou 2 para nao>: ');
-                continuar = continuar.toLowerCase();
+                continuar = padrao("pergunta",[1,2], "Deseja cadastrar este livro?\n\n1 - Sim\n2 - Não\n\nEscolha uma opção: ");
                 if (continuar == "1") {
                     this.acervo.push(livro);
-                    console.log("\n\tLivro cadastrado com sucesso!\n");
+                    padrao("positivo","","Livro cadastrado com sucesso!");
                 } else if (continuar == '2') {
-                    console.log("\n\tCadastrado descartado!\n");
-                  } else {
-                    console.log('\n\tResposta invalida!');
-                    }
+                    padrao("aviso","","Cadastro descartado!");
+                }
             } while (continuar != "1" && continuar != "2");
 
             //condição para continuar ou não cadastrando novos livros
             do {
-                continuar = readline.question('\nDeseja realizar um novo cadastro? <Digite 1 para sim ou 2 para nao>: ');
+                continuar = padrao("pergunta",[1,2], "Deseja realizar um novo cadastro?\n\n1 - Sim\n2 - Não\n\nEscolha uma opção: ");
                 if (continuar == '1') {
                     loop = true;
                 } else if (continuar == '2') {
                     loop = false;
-                  } else {
-                    console.log('\n\tResposta invalida!');
-                    }
+                }
             } while (continuar != '1' && continuar != '2');
         }
     }
 
 
- buscar() {
+buscar() {
     //variáveis locais
     let loop = true;
     let continuar = true;
