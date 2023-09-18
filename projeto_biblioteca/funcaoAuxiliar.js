@@ -1,3 +1,6 @@
+//habilitando a biblioteca readline-sync
+import readline from "readline-sync";
+
 /** Automatiza a formatacao de perguntas ao usuario.
  * @param {string} tipo - Define o tipo de msg. Valores possiveis: titulo, positivo, aviso, erro, pergunta
  * @param {lista} opcoes - recebe uma array com os valores corretos para o usuario digitar: PADRAO: [0,1,2]
@@ -7,13 +10,13 @@
 
 function padrao(tipo, opcoes=[0,1,2], msg="Escolha uma opção: ", erro="Opção inválida!"){
     if (tipo == "titulo") {
-        return `\x1b[107m\x1b[30m\x1b[1m          ${msg}          \x1b[0m\n`;
+        console.log(`\x1b[107m\x1b[30m\x1b[1m          ${msg}          \x1b[0m\n`);
     } else if (tipo == "positivo") {
-        return `\x1b[92m\x1b[1m${msg}\x1b[0m\n`;
+        console.log(`\n\x1b[92m\x1b[1m${msg}\x1b[0m\n`);
     } else if (tipo == "aviso") {
-        return `\x1b[33m\x1b[1m${msg}\x1b[0m\n`;
+        console.log(`\n\x1b[33m\x1b[1m${msg}\x1b[0m\n`);
     } else if (tipo == "erro") {
-        return `\x1b[31m\x1b[1m${msg}\x1b[0m\n`;
+        console.log(`\x1b[31m\x1b[1m${msg}\x1b[0m\n`);
     }else if (tipo == "pergunta") {
         return readline.question(msg, {limit: opcoes, limitMessage: `\x1b[31m\x1b[1m${erro}\x1b[0m\n`});
     }
