@@ -22,4 +22,17 @@ function padrao(tipo, opcoes=[0,1,2], msg="Escolha uma opção: ", erro="Opção
     }
 }
 
-export {padrao};
+
+function imprimeLivro (livro){
+    console.log(`\n${livro.getTituloLivro}`.toUpperCase());
+    console.log("------------------------------------------------------------------");
+    console.log(`Autor principal: ${livro.getAutorLivro}`);
+    console.log(`Outros autores:  ${livro.getOutrosAutoresLivro}`);
+    console.log(`Edicao:          ${livro.getEdicaoLivro}`);
+    console.log(`Paginas:         ${livro.getPaginasLivro}`);
+    console.log(`Publicacao:      ${livro.getPublicacaoLivro}`);
+    console.log(`ISBN:            ${livro.getIsbnLivro}`);
+    console.log(`assuntos:        ${livro.getAssuntosLivro}\n`);
+}
+
+export {padrao, imprimeLivro};
